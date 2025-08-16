@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para Você, Com Todo Meu Amor</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Dancing+Script:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Partículas flutuantes de fundo -->
+    <div class="particles">
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+    </div>
+
+    <!-- Seção Inicial -->
+    <section class="hero-section" id="inicio">
+        <div class="container">
+            <h1 class="main-title" data-aos="fade-up">Para Vitória🌹 meu Amor</h1>
+            <div class="love-text" data-aos="fade-up" data-aos-delay="300">
+                <p>Estar ao seu lado é como ouvir a música mais bonita, aquela que acalma e faz o coração sorrir. Você ilumina até os meus dias mais escuros e me dá motivos para acreditar que cada manhã pode ser especial.</p>
+                
+                <p>Seu jeito, suas palavras e até o seu sorriso… tudo em você parece Perfeita. Amar você é o melhor presente que já recebi, e cada batida do meu coração leva um pouco do seu nome junto.
+</p>
+                
+                <p class="highlight">Você não é só o meu amor, é a pessoa perfeita para min !!
+                    Rawwr !! eu te amo mil zilhões para todo o sempre ❤
+                </p>
+            </div>
+            <div class="scroll-indicator" data-aos="fade-up" data-aos-delay="600">
+                <span>Veja tudinho ❤</span>
+                <div class="arrow-down"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção de Vídeo -->
+    <section class="video-section" id="video">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">Para minha vidoca !! ❤</h2>
+            <div class="video-container" data-aos="zoom-in" data-aos-delay="300">
+                <div class="video-placeholder">
+                    <div class="play-button" id="playButton">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M8 5V19L19 12L8 5Z" fill="currentColor"/>
+                        </svg>
+                    </div>
+                    <p>Clique para assistir</p>
+                    <small></small>
+                </div>
+              
+                <video controls style="display: none;" id="loveVideo">
+                    <source src="2.mp4" type="video/mp4">
+                </video> 
+            </div>
+        </div>
+    </section>
+    <script>
+    const playButton = document.getElementById("playButton");
+    const video = document.getElementById("loveVideo");
+    const placeholder = document.querySelector(".video-placeholder");
+
+    playButton.addEventListener("click", () => {
+        placeholder.style.display = "none"; // esconde a capa com texto
+        video.style.display = "block";      // mostra o player de vídeo
+        video.play();                       // inicia o vídeo
+    });
+</script>
+
+  <!-- Seção de Música -->
+<section class="music-section" id="musica">
+    <div class="container">
+        <h2 class="section-title" data-aos="fade-up">Music for you !!</h2>
+        <div class="music-player" data-aos="fade-up" data-aos-delay="300">
+            <div class="album-cover">
+                <div class="vinyl-record" id="vinylRecord">
+                    <div class="vinyl-center"></div>
+                </div>
+                <div class="cover-art">♪</div>
+            </div>
+            <div class="player-controls">
+                <h3 class="song-title" id="songTitle">🌹 Stay With Me</h3>
+             
+                <div class="control-buttons">
+                    <button class="control-btn" id="prevBtn">⏮</button>
+                    <button class="control-btn play-pause" id="playPauseBtn">▶</button>
+                    <button class="control-btn" id="nextBtn">⏭</button>
+                </div>
+                <div class="progress-container">
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progressFill"></div>
+                    </div>
+                    <div class="time-display">
+                        <span id="currentTime">0:00</span>
+                        <span id="totalTime">0:00</span>
+                    </div>
+                </div>
+                <div class="volume-container">
+                    <span class="volume-icon">🔊</span>
+                    <input type="range" class="volume-slider" id="volumeSlider" min="0" max="100" value="70">
+                </div>
+            </div>
+        </div>
+        <p class="music-message" data-aos="fade-up" data-aos-delay="600">
+          "Feito com amor 💖"
+        </p>
+    </div>
+</section>
+
+<!-- Player de Áudio -->
+<audio id="audioPlayer" src="1.mp3"></audio>
+
+<script>
+    const audio = document.getElementById("audioPlayer");
+    const playPauseBtn = document.getElementById("playPauseBtn");
+    const progressFill = document.getElementById("progressFill");
+    const currentTimeEl = document.getElementById("currentTime");
+    const totalTimeEl = document.getElementById("totalTime");
+    const volumeSlider = document.getElementById("volumeSlider");
+    const vinyl = document.getElementById("vinylRecord");
+
+    let isPlaying = false;
+
+    // Atualizar duração total quando carregar
+    audio.addEventListener("loadedmetadata", () => {
+        let minutes = Math.floor(audio.duration / 60);
+        let seconds = Math.floor(audio.duration % 60);
+        totalTimeEl.textContent = `${minutes}:${seconds < 10 ? "0" + seconds : seconds}`;
+    });
+
+    // Play/Pause
+    playPauseBtn.addEventListener("click", () => {
+        if (isPlaying) {
+            audio.pause();
+            playPauseBtn.textContent = "▶";
+            vinyl.style.animationPlayState = "paused";
+        } else {
+            audio.play();
+            playPauseBtn.textContent = "⏸";
+            vinyl.style.animation = "spin 5s linear infinite";
+            vinyl.style.animationPlayState = "running";
+        }
+        isPlaying = !isPlaying;
+    });
+
+    // Atualizar progresso
+    audio.addEventListener("timeupdate", () => {
+        let progress = (audio.currentTime / audio.duration) * 100;
+        progressFill.style.width = progress + "%";
+
+        let minutes = Math.floor(audio.currentTime / 60);
+        let seconds = Math.floor(audio.currentTime % 60);
+        currentTimeEl.textContent = `${minutes}:${seconds < 10 ? "0" + seconds : seconds}`;
+    });
+
+    // Controle de volume
+    volumeSlider.addEventListener("input", () => {
+        audio.volume = volumeSlider.value / 100;
+    });
+
+ 
+    
+    document.head.appendChild(style);
+</script>
+
+
+    <!-- Seção Final -->
+    <section class="final-section" id="final">
+        <div class="container">
+            <div class="heart-container" data-aos="zoom-in">
+                <div class="pulsing-heart" id="pulsingHeart">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 21.35L10.55 20.03C5.4 15.36 2 12.28 2 8.5C2 5.42 4.42 3 7.5 3C9.24 3 10.91 3.81 12 5.08C13.09 3.81 14.76 3 16.5 3C19.58 3 22 5.42 22 8.5C22 12.28 18.6 15.36 13.45 20.04L12 21.35Z" fill="currentColor"/>
+                    </svg>
+                </div>
+            </div>
+            <h2 class="love-declaration" data-aos="fade-up" data-aos-delay="300">Eu Te Amo</h2>
+            <p class="final-message" data-aos="fade-up" data-aos-delay="600">
+                Com todo o meu coração, com toda a minha alma, 
+                com toda a intensidade do mundo, somente por você !! 💓.
+            </p>
+            <div class="signature" data-aos="fade-up" data-aos-delay="900">
+                <p>Para sempre seu,</p>
+                <p class="signature-name">Seu Amor ❤</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Navegação suave -->
+    <nav class="floating-nav">
+        <a href="#inicio" class="nav-dot active" data-section="inicio"></a>
+        <a href="#video" class="nav-dot" data-section="video"></a>
+        <a href="#musica" class="nav-dot" data-section="musica"></a>
+        <a href="#final" class="nav-dot" data-section="final"></a>
+    </nav>
+
+    <script src="script.js"></script>
+</body>
+</html>
